@@ -41,6 +41,7 @@ jobs:
             -s arch_build=x86_64 \
             -s compiler=clang \
             -s compiler.version=9 \
+            -s compiler.libcxx=c++_shared \
             . joakimono/testing
       - name: Conan upload
         run: |
