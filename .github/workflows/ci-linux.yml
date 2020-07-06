@@ -1,0 +1,42 @@
+name: Linux install
+
+on: [push]
+
+env:
+  KIMONO_CONAN_CLASS: "AndroidCmlineToolsConan"
+  KIMONO_REFERENCE: "android-cmdline-tools*"
+  CONAN_UPLOAD: "https://api.bintray.com/conan/joakimono/conan"
+  CONAN_PASSWORD_KIMONO: ${{ secrets.BINTRAY_API_KEY }}
+  CONAN_LOGIN_USERNAME_KIMONO: ${{ secrets.BINTRAY_USER }}
+  CONAN_NON_INTERACTIVE: True
+  CONAN_USE_ALWAYS_SHORT_PATHS: True
+
+jobs:
+  conan-install-linux:
+    name: Conan
+    runs-on: ubuntu-20.04
+    container:
+      image: conanio/gcc8
+      options: -u 0
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install prerequisites
+        run: |
+          sudo apt-get update
+          sudo pip3 install --upgrade setuptools pip
+          sudo pip3 install conan requests
+      - name: Configure Conan
+        run: conan remote add kimono ${CONAN_UPLOAD} --insert 1
+      - name: Conan create
+        run: |
+          conan create \
+            --build missing \
+            --build outdated \
+            --build android_ndk_installer \
+            -s os=Android \
+            -s os_build=Windows \
+            -s os_arch=x86_64 \
+            . joakimono/testing
+      - name: Conan upload
+        run: |
+          conan upload -c -r kimono ${KIMONO_REFERENCE} --retry 5 --retry-wait 20 --force
