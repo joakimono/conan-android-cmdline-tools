@@ -26,7 +26,9 @@ jobs:
           sudo pip3 install --upgrade setuptools pip
           sudo pip3 install conan requests
       - name: Configure Conan
-        run: conan remote add kimono ${CONAN_UPLOAD} --insert 1
+        run: |
+          conan remote add kimono ${CONAN_UPLOAD} --insert 1
+          conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
       - name: Conan create
         run: |
           conan create \
