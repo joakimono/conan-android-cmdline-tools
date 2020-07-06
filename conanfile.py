@@ -28,7 +28,7 @@ class AndroidCmdlineToolsConan(ConanFile):
                        "extra_packages=")
 
     requires = (
-        "java_installer/[>=8.0.153]@bincrafters/stable",
+        "java_installer/[>=8.0.0 <9]@bincrafters/stable",
         "android_ndk_installer/r21d@bincrafters/stable"
     )
 
