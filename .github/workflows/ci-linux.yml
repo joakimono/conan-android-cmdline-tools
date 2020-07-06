@@ -36,7 +36,7 @@ jobs:
             --build outdated \
             --build android_ndk_installer \
             -s os=Android \
-            -s os_build=Windows \
+            -s os_build=Linux \
             -s os.api_level=28 \
             -s arch_build=x86_64 \
             -s compiler=clang \
