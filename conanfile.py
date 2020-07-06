@@ -76,9 +76,12 @@ class AndroidCmdlineToolsConan(ConanFile):
 
     def build(self):
 
-        suffix = ".bat" if self.settings.os_build == "Windows" else ""
-        confirm = \
-            "echo y | " if self.settings.os_build == "Windows" else "yes | "
+        if self.settings.os_build == "Windows":
+            suffix = ".bat"
+            confirm = "echo y | "
+        else:
+            suffix = ""
+            confirm = "yes | "
 
         self.run(confirm + os.path.join(self.source_folder,
                                         "cmdline-tools",
