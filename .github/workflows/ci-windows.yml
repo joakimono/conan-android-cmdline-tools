@@ -22,7 +22,7 @@ jobs:
           pip3 install --upgrade setuptools pip
           pip3 install conan requests
       - name: Configure Conan
-        run: conan remote add kimono ${CONAN_UPLOAD} --insert 1
+        run: conan remote add kimono ${env:CONAN_UPLOAD} --insert 1
       - name: Conan create
         run: |
           conan create `
@@ -31,8 +31,10 @@ jobs:
             --build android_ndk_installer `
             -s os=Android `
             -s os_build=Windows `
-            -s os_arch=x86_64 `
+            -s arch_build=x86_64 `
+            -s compiler=clang `
+            -s compiler.version=9 `
             . joakimono/testing
       - name: Conan upload
         run: |
-          conan upload -c -r kimono ${KIMONO_REFERENCE} --retry 5 --retry-wait 20 --force
+          conan upload -c -r kimono ${env:KIMONO_REFERENCE} --retry 5 --retry-wait 20 --force
