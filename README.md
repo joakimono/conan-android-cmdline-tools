@@ -5,7 +5,7 @@
 
 [Conan.io](https://conan.io) recipe for [android cmdline tools](https://developer.android.com/studio/command-line/sdkmanager).
 
-The recipe generates library packages, which can be found at [Bintray](https://bintray.com/joakimono/conan/android-cmdline-tools%3Ajoakimon).
+The recipe generates library packages, which can be found at [Bintray](https://bintray.com/joakimono/conan/android-cmdline-tools%3Ajoakimono).
 The package is usually consumed using the `conan install` command or a *conanfile.txt*.
 
 ## How to use this package
@@ -23,7 +23,7 @@ The package is usually consumed using the `conan install` command or a *conanfil
 
    ```
    [build_requires]
-   android-cmdline-tools/[>=6609375]@joakimono/stable
+   android-cmdline-tools/[>=6858069]@joakimono/stable
 
    [options]
    android-cmdline-tools:extra_packages=system-images;android-30;google_apis;x86_64,platforms;android-30

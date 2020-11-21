@@ -5,7 +5,7 @@ from conans.errors import ConanInvalidConfiguration
 
 class AndroidCmdlineToolsConan(ConanFile):
     name = "android-cmdline-tools"
-    version = "6609375"
+    version = "6858069"
     description = "Android command line tools"
     url = "https://github.com/joakimono/conan-android-cmdline-tools"
     homepage = "https://developer.android.com/studio/command-line/sdkmanager"
@@ -60,9 +60,9 @@ class AndroidCmdlineToolsConan(ConanFile):
                                                          self.version)
         source_url = "https://dl.google.com/android/repository/" + archive_name
         sha256 = {
-            "win": "40bba20275180194bebf89bb58c74d712bb93cc401f36bd2f8f32383acf9826c",
-            "mac": "2c3822db1c916655223e5ee8ce0fbf6b73d0b99012045c9dc8eaa6a5736c0c55",
-            "linux": "89f308315e041c93a37a79e0627c47f21d5c5edbe5e80ea8dc0aac8a649e0e92"}\
+            "win": "d2f6c9bb7db0362995c0b8dd2fd5949ce23c1dccb7f9392350b5e29b6d5fec7d",
+            "mac": "58a55d9c5bcacd7c42170d2cf2c9ae2889c6797a6128307aaf69100636f54a13",
+            "linux": "87f6dcf41d4e642e37ba03cb2e387a542aa0bd73cb689a9e7152aad40a6e7a08"}\
             .get(variant)
 
         tools.get(source_url, sha256=sha256,
@@ -85,7 +85,7 @@ class AndroidCmdlineToolsConan(ConanFile):
 
         self.run(confirm + os.path.join(self.source_folder,
                                         "cmdline-tools",
-                                        "tools",
+                                        "cmdline-tools",
                                         "bin",
                                         "sdkmanager{} --licenses"
                                         .format(suffix)))
@@ -95,7 +95,7 @@ class AndroidCmdlineToolsConan(ConanFile):
         cmd = "{}{}".format(os.path.join(
             self.source_folder,
             "cmdline-tools",
-            "tools",
+            "cmdline-tools",
             "bin",
             "sdkmanager{} --install ".format(suffix)),
                             self._packages)
@@ -110,7 +110,7 @@ class AndroidCmdlineToolsConan(ConanFile):
                          .format(self.package_folder))
         self.env_info.ANDROID_SDK_ROOT = self.package_folder
         self.env_info.PATH.append(os.path.join(
-            self.package_folder, "cmdline-tools", "tools", "bin"))
+            self.package_folder, "cmdline-tools", "cmdline-tools", "bin"))
         self.env_info.PATH.append(os.path.join(
             self.package_folder, "emulator"))
         self.env_info.PATH.append(os.path.join(
