@@ -23,7 +23,7 @@ The package is usually consumed using the `conan install` command or a *conanfil
 
    ```
    [build_requires]
-   android-cmdline-tools/[>=6858069]@joakimono/stable
+   android-cmdline-tools/[>=6858069]@joakimono/testing # or stable?
 
    [options]
    android-cmdline-tools:extra_packages=system-images;android-30;google_apis;x86_64,platforms;android-30
