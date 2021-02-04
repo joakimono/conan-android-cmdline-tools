@@ -51,7 +51,7 @@ class AndroidCmdlineToolsConan(ConanFile):
             packages.append('emulator')
 
         packages.extend(self._extra_packages)
-        return ''.join([' "\"{}\""'.format(pack) for pack in packages if pack != ''])
+        return packages
 
     def source(self):
         variant = self._platform
@@ -89,17 +89,19 @@ class AndroidCmdlineToolsConan(ConanFile):
                                         "bin",
                                         "sdkmanager{} --licenses"
                                         .format(suffix)))
-        self.output.info(
-            "sdkmanager is installing packages: {}".format(self._packages))
 
-        cmd = "{}{}".format(os.path.join(
-            self.source_folder,
-            "cmdline-tools",
-            "cmdline-tools",
-            "bin",
-            "sdkmanager{} --install ".format(suffix)),
-                            self._packages)
-        self.run(cmd)
+        base_cmd = os.path.join(self.source_folder,
+                                "cmdline-tools",
+                                "cmdline-tools",
+                                "bin",
+                                "sdkmanager{} --install ".format(suffix))
+
+        for pack in self._packages:
+            if pack != '':
+                self.output.info(
+                    "sdkmanager is installing package: {}".format(pack))
+                cmd = '{}"\"{}\""'.format(base_cmd, pack)
+                self.run(confirm + cmd)
 
     def package(self):
         self.copy(pattern="*", keep_path=True, symlinks=True)
