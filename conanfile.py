@@ -78,7 +78,7 @@ class AndroidCmdlineToolsConan(ConanFile):
 
         if self.settings.os_build == "Windows":
             suffix = ".bat"
-            confirm = "echo y | "
+            confirm = "yes | "
         else:
             suffix = ""
             confirm = "yes | "
