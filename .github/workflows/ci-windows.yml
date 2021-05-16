@@ -3,11 +3,10 @@ name: Windows install
 on: [push]
 
 env:
-  KIMONO_CONAN_CLASS: "AndroidCmlineToolsConan"
-  KIMONO_REFERENCE: "android-cmdline-tools*"
-  CONAN_UPLOAD: "https://api.bintray.com/conan/joakimono/conan"
-  CONAN_PASSWORD_KIMONO: ${{ secrets.BINTRAY_API_KEY }}
-  CONAN_LOGIN_USERNAME_KIMONO: ${{ secrets.BINTRAY_USER }}
+  SINTEF_REFERENCE: "android-cmdline-tools*"
+  CONAN_UPLOAD: ${{ secrets.CONAN_URL }}
+  CONAN_PASSWORD_SINTEF: ${{ secrets.CONAN_PASSWORD }}
+  CONAN_LOGIN_USERNAME_SINTEF: ${{ secrets.CONAN_USER }}
   CONAN_NON_INTERACTIVE: True
   CONAN_USE_ALWAYS_SHORT_PATHS: True
 
@@ -23,7 +22,7 @@ jobs:
           pip3 install conan requests
       - name: Configure Conan
         run: |
-          conan remote add kimono ${env:CONAN_UPLOAD} --insert 1
+          conan remote add sintef ${env:CONAN_UPLOAD} --insert 1
           conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
       - name: Conan create
         run: |
@@ -41,4 +40,4 @@ jobs:
             . joakimono/testing
       - name: Conan upload
         run: |
-          conan upload -c -r kimono ${env:KIMONO_REFERENCE} --retry 5 --retry-wait 20 --force
+          conan upload -c -r sintef ${env:SINTEF_REFERENCE} --retry 5 --retry-wait 20 --force
