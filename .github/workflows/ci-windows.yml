@@ -23,7 +23,7 @@ jobs:
       - name: Configure Conan
         run: |
           conan remote add sintef ${env:CONAN_UPLOAD} --insert 1
-          conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+          conan remote add bincrafters https://bincrafters.jfrog.io/artifactory/api/conan/public-conan
       - name: Conan create
         run: |
           conan create `
