@@ -1,7 +1,5 @@
 [![Linux install](https://github.com/joakimono/conan-android-cmdline-tools/workflows/Linux%20install/badge.svg)](https://github.com/joakimono/conan-android-cmdline-tools/actions?query=workflow%3A"Linux+install")
 [![Windows install](https://github.com/joakimono/conan-android-cmdline-tools/workflows/Windows%20install/badge.svg)](https://github.com/joakimono/conan-android-cmdline-tools/actions?query=workflow%3A"Windows+install")
-[![Download](https://api.bintray.com/packages/joakimono/conan/android-cmdline-tools%3Ajoakimono/images/download.svg)](https://bintray.com/joakimono/conan/android-cmdline-tools%3Ajoakimono/_latestVersion)
-
 
 [Conan.io](https://conan.io) recipe for [android cmdline tools](https://developer.android.com/studio/command-line/sdkmanager).
 
