@@ -26,8 +26,9 @@ jobs:
           sudo pip3 install conan requests
       - name: Configure Conan
         run: |
-          conan remote add sintef ${CONAN_UPLOAD} --insert 1
+          conan remote add sintef ${CONAN_UPLOAD}
           conan remote add bincrafters https://bincrafters.jfrog.io/artifactory/api/conan/public-conan
+          conan config set general.revisions_enabled=1
       - name: Conan create
         run: |
           conan create \
